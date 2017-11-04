@@ -37,13 +37,14 @@ extension GameScene {
         let bird = SKSpriteNode(texture: SKTextureAtlas(named:"player").textureNamed("bird1"))
         bird.size = CGSize(width: 50, height: 50)
         bird.position = CGPoint(x:self.frame.midX, y:self.frame.midY)
+        bird.zPosition = 100
         //2
         bird.physicsBody = SKPhysicsBody(circleOfRadius: bird.size.width / 2)
         bird.physicsBody?.linearDamping = 1.1
         bird.physicsBody?.restitution = 0
         //3
         bird.physicsBody?.categoryBitMask = CollisionBitMask.birdCategory
-        bird.physicsBody?.collisionBitMask = CollisionBitMask.pillarCategory | CollisionBitMask.groundCategory
+        bird.physicsBody?.collisionBitMask = 0
         bird.physicsBody?.contactTestBitMask = CollisionBitMask.pillarCategory | CollisionBitMask.flowerCategory | CollisionBitMask.groundCategory
         //4
         bird.physicsBody?.affectedByGravity = false
@@ -177,9 +178,10 @@ extension GameScene {
         
         let topWall = SKSpriteNode(imageNamed: "pillar")
         let btmWall = SKSpriteNode(imageNamed: "pillar")
+        let pillarDistance = random(min: 390, max: 400)
         
-        topWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 + 420)
-        btmWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 - 420)
+        topWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 + pillarDistance)
+        btmWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 - pillarDistance)
         
         // Scale to half their size
         topWall.setScale(0.5)
@@ -187,14 +189,14 @@ extension GameScene {
         
         topWall.physicsBody = SKPhysicsBody(rectangleOf: topWall.size)
         topWall.physicsBody?.categoryBitMask = CollisionBitMask.pillarCategory
-        topWall.physicsBody?.collisionBitMask = CollisionBitMask.birdCategory
+        topWall.physicsBody?.collisionBitMask = 0
         topWall.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
         topWall.physicsBody?.isDynamic = false
         topWall.physicsBody?.affectedByGravity = false
         
         btmWall.physicsBody = SKPhysicsBody(rectangleOf: btmWall.size)
         btmWall.physicsBody?.categoryBitMask = CollisionBitMask.pillarCategory
-        btmWall.physicsBody?.collisionBitMask = CollisionBitMask.birdCategory
+        btmWall.physicsBody?.collisionBitMask = 0
         btmWall.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
         btmWall.physicsBody?.isDynamic = false
         btmWall.physicsBody?.affectedByGravity = false

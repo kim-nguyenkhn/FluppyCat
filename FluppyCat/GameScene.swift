@@ -161,7 +161,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Then, uses the CollisionBitMask constants to set the physics bodies
         // Note the .birdCategory bit masks, because we want to detect collisions & contacts with the bird
         self.physicsBody?.categoryBitMask = CollisionBitMask.groundCategory
-        self.physicsBody?.collisionBitMask = CollisionBitMask.birdCategory
+        self.physicsBody?.collisionBitMask = 0
         self.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
         self.physicsBody?.isDynamic = false
         // Setting affectedByGravity to false will prevent the player from falling off the screen
@@ -192,8 +192,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.bird = createBird()
         self.addChild(bird)
         
-        // Initialize an SKAction object which takes all the birdSprites and loops them for 0.1 sec each, forever
-        let animateBird = SKAction.animate(with: self.birdSprites, timePerFrame: 0.1)
+        // Initialize an SKAction object which takes all the birdSprites and loops them for 0.01 sec each, forever
+        let animateBird = SKAction.animate(with: self.birdSprites, timePerFrame: 0.01)
         self.repeatActionBird = SKAction.repeatForever(animateBird)
         
         // Add other UI sprites to the GameScene
@@ -215,42 +215,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
         
-        // If the bird collides with any pillar or the ground
-        if (firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.pillarCategory)
-            || (firstBody.categoryBitMask == CollisionBitMask.pillarCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory)
-            || (firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.groundCategory)
-            || (firstBody.categoryBitMask == CollisionBitMask.groundCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory) {
-            
-            // Stop the game
-            enumerateChildNodes(withName: "wallPair", using: ({
-                (node, error) in
-                node.speed = 0
-                self.removeAllActions()
-            }))
-            if (isDied == false) {
+        if (isDied == false) {
+            // If the bird collides with any pillar or the ground
+            if (firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.pillarCategory)
+                || (firstBody.categoryBitMask == CollisionBitMask.pillarCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory) {
+                // Stop the game
+                enumerateChildNodes(withName: "wallPair", using: ({
+                    (node, error) in
+                    node.speed = 0
+                    self.removeAllActions()
+                }))
                 isDied = true
                 createRestartBtn()
                 pauseBtn.removeFromParent()
                 self.bird.removeAllActions()
+                
+                // let the bird fall through the pillars/ground
+                firstBody.collisionBitMask = 0;
+                secondBody.collisionBitMask = 0;
+                
+                // spin the bird on death lol, negative angle = clockwise
+                bird.physicsBody?.applyImpulse(CGVector(dx: -5, dy: 100))
+                self.bird.run(SKAction.rotate(byAngle: CGFloat(-1080), duration: 2.0), completion: {
+                    self.bird.removeFromParent()
+                })
             }
-        }
-        // If the bird collides with a flower
-        else if (firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.flowerCategory) {
-            
-            // increment the score, remove the flower node
-            run(coinSound)
-            score += 1
-            scoreLbl.text = "\(score)"
-            secondBody.node?.removeFromParent()
-        }
-        // If the bird collides with a flower (duplicate code of above)
-        else if (firstBody.categoryBitMask == CollisionBitMask.flowerCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory) {
-            
-            // increment the score, remove the flower node
-            run(coinSound)
-            score += 1
-            scoreLbl.text = "\(score)"
-            firstBody.node?.removeFromParent()
+                // If the bird collides with a flower
+            else if (firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.flowerCategory) {
+                
+                // increment the score, remove the flower node
+                run(coinSound)
+                score += 1
+                scoreLbl.text = "\(score)"
+                secondBody.node?.removeFromParent()
+            }
+                // If the bird collides with a flower (duplicate code of above)
+            else if (firstBody.categoryBitMask == CollisionBitMask.flowerCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory) {
+                
+                // increment the score, remove the flower node
+                run(coinSound)
+                score += 1
+                scoreLbl.text = "\(score)"
+                firstBody.node?.removeFromParent()
+            }
         }
     }
     

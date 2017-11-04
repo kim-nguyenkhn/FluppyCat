@@ -17,8 +17,10 @@ class GameViewController: UIViewController {
         // inits a GameScene object with a scene size filling the view bounds
         let scene = GameScene(size: view.bounds.size)
         let skView = view as! SKView
-        skView.showsFPS = false
+        skView.showsFPS = true
         skView.showsNodeCount = false
+        // Set the FPS cap
+        skView.preferredFramesPerSecond = 60
         // ignoresSiblingOrder - allows placing objects in order we want,
         // instead of letting the system randomly decide.
         skView.ignoresSiblingOrder = false
