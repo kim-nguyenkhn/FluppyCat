@@ -74,7 +74,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let spawnDelayForever = SKAction.repeatForever(SpawnDelay)
             self.run(spawnDelayForever)
             //6
-            let gameSpeed = CGFloat(50);
+            let gameSpeed = CGFloat(75);
             let durationFactor = CGFloat(0.008)
             let distance = CGFloat(self.frame.width + wallPair.frame.width)
             let movePillars = SKAction.moveBy(x: -distance - gameSpeed, y: 0, duration: TimeInterval(durationFactor * distance))
@@ -174,7 +174,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // This gives the appearance of a seamless moving background
         for i in 0..<2
         {
-            let background = SKSpriteNode(imageNamed: "bg")
+            let background = SKSpriteNode(imageNamed: "bg-new")
             background.anchorPoint = CGPoint.init(x: 0, y: 0)
             background.position = CGPoint(x:CGFloat(i) * self.frame.width, y:0)
             background.name = "background"
@@ -234,9 +234,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 firstBody.collisionBitMask = 0;
                 secondBody.collisionBitMask = 0;
                 
-                // spin the bird on death lol, negative angle = clockwise
+                // spin the bird on death lol
                 bird.physicsBody?.applyImpulse(CGVector(dx: -5, dy: 100))
-                self.bird.run(SKAction.rotate(byAngle: CGFloat(-1080), duration: 2.0), completion: {
+                let scale = SKAction.scale(by: 3, duration: 3.0)
+                let rotate = SKAction.rotate(byAngle: CGFloat(-1080), duration: 3.0)
+                let group = SKAction.group([scale, rotate])
+                self.bird.run(group, completion: {
                     self.bird.removeFromParent()
                 })
             }
