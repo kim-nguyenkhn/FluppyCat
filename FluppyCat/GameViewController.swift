@@ -17,7 +17,7 @@ class GameViewController: UIViewController {
         // inits a GameScene object with a scene size filling the view bounds
         let scene = GameScene(size: view.bounds.size)
         let skView = view as! SKView
-        skView.showsFPS = true
+        skView.showsFPS = false
         skView.showsNodeCount = false
         // Set the FPS cap
         skView.preferredFramesPerSecond = 60

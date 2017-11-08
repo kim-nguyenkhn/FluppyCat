@@ -28,18 +28,18 @@ extension GameScene {
     
     // @function createBird
     //
-    // 1 - Creates a sprite node, assigns a texture "bird1", size of 50x50, position in center of screen
+    // 1 - Creates a sprite node, assigns a texture "bird1", position in center of screen
     // 2 - Make the bird a SKPhysicsBody object, behaving like a ball of radius of half its width
     // 3 - Category: bird, CollidesWith: pillars & ground, CheckForContactWith: pillars, flowers & ground
     // 4 - Bird is affected by gravity
     func createBird() -> SKSpriteNode {
         //1
-        let bird = SKSpriteNode(texture: SKTextureAtlas(named:"player").textureNamed("bird1"))
-        bird.size = CGSize(width: 50, height: 50)
+        let bird = SKSpriteNode(texture: SKTextureAtlas(named:"kitty").textureNamed("kitty1"))
+        bird.size = CGSize(width: 67.34, height: 52.67)
         bird.position = CGPoint(x:self.frame.midX, y:self.frame.midY)
         bird.zPosition = 100
         //2
-        bird.physicsBody = SKPhysicsBody(circleOfRadius: bird.size.width / 2)
+        bird.physicsBody = SKPhysicsBody(circleOfRadius: 25)
         bird.physicsBody?.linearDamping = 1.1
         bird.physicsBody?.restitution = 0
         //3
@@ -57,7 +57,7 @@ extension GameScene {
     //
     // Creates restart button & adds to GameScene
     func createRestartBtn() {
-        restartBtn = SKSpriteNode(imageNamed: "restart")
+        restartBtn = SKSpriteNode(imageNamed: FCConstants.Images.restart)
         restartBtn.size = CGSize(width:100, height:100)
         restartBtn.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
         restartBtn.zPosition = 6
@@ -71,7 +71,7 @@ extension GameScene {
     //
     // Creates a pause button & adds it to the GameScene
     func createPauseBtn() {
-        pauseBtn = SKSpriteNode(imageNamed: "pause")
+        pauseBtn = SKSpriteNode(imageNamed: FCConstants.Images.pause)
         pauseBtn.size = CGSize(width:40, height:40)
         pauseBtn.position = CGPoint(x: self.frame.width - 30, y: 30)
         pauseBtn.zPosition = 6
@@ -129,7 +129,7 @@ extension GameScene {
     // Creates the logo & positions it
     func createLogo() {
         logoImg = SKSpriteNode()
-        logoImg = SKSpriteNode(imageNamed: "logo")
+        logoImg = SKSpriteNode(imageNamed: FCConstants.Images.logo)
         logoImg.size = CGSize(width: 272, height: 65)
         logoImg.position = CGPoint(x:self.frame.midX, y:self.frame.midY + 100)
         // Animates the size from 0.5 to 1.0 scale in 0.3 sec
@@ -157,27 +157,27 @@ extension GameScene {
     // @returns SKLabelNode
     //
     // Creates a pair of pillars in the scene
-    // 1 - Inits a flower node with contactBitMask to the bird
+    // 1 - Inits a coin node with contactBitMask to the bird
     // 2 - Create an SKNode with top & bottom walls as the children.
     // 3 - Generates a random number for the wallPair's "y" position
     func createWalls() -> SKNode {
         // 1
-        let flowerNode = SKSpriteNode(imageNamed: "flower")
-        flowerNode.size = CGSize(width: 40, height: 40)
-        flowerNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
-        flowerNode.physicsBody = SKPhysicsBody(rectangleOf: flowerNode.size)
-        flowerNode.physicsBody?.affectedByGravity = false
-        flowerNode.physicsBody?.isDynamic = false
-        flowerNode.physicsBody?.categoryBitMask = CollisionBitMask.flowerCategory
-        flowerNode.physicsBody?.collisionBitMask = 0
-        flowerNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
-        flowerNode.color = SKColor.blue
+        let coinNode = SKSpriteNode(imageNamed: FCConstants.Images.coin)
+        coinNode.size = CGSize(width: 40, height: 40)
+        coinNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
+        coinNode.physicsBody = SKPhysicsBody(rectangleOf: coinNode.size)
+        coinNode.physicsBody?.affectedByGravity = false
+        coinNode.physicsBody?.isDynamic = false
+        coinNode.physicsBody?.categoryBitMask = CollisionBitMask.flowerCategory
+        coinNode.physicsBody?.collisionBitMask = 0
+        coinNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
+        coinNode.color = SKColor.blue
         // 2
         wallPair = SKNode()
         wallPair.name = "wallPair"
         
-        let topWall = SKSpriteNode(imageNamed: "pillar")
-        let btmWall = SKSpriteNode(imageNamed: "pillar")
+        let topWall = SKSpriteNode(imageNamed: FCConstants.Images.wall)
+        let btmWall = SKSpriteNode(imageNamed: FCConstants.Images.wall)
         let pillarDistance = random(min: 390, max: 400)
         
         topWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 + pillarDistance)
@@ -211,7 +211,7 @@ extension GameScene {
         // 3
         let randomPosition = random(min: -200, max: 200)
         wallPair.position.y = wallPair.position.y +  randomPosition
-        wallPair.addChild(flowerNode)
+        wallPair.addChild(coinNode)
         
         // Moves it horizontally, and removes it when it reaches the other side
         wallPair.run(moveAndRemove)

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB183ED01FABD712003211B9 /* player.atlas in Resources */ = {isa = PBXBuildFile; fileRef = AB183ECF1FABD712003211B9 /* player.atlas */; };
 		AB183ED21FABD72C003211B9 /* CoinSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AB183ED11FABD72C003211B9 /* CoinSound.mp3 */; };
 		AB33FE411FABC91B00E37BF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB33FE401FABC91B00E37BF5 /* AppDelegate.swift */; };
 		AB33FE431FABC91B00E37BF5 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB33FE421FABC91B00E37BF5 /* GameScene.sks */; };
@@ -17,11 +16,12 @@
 		AB33FE4C1FABC91B00E37BF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB33FE4A1FABC91B00E37BF5 /* Main.storyboard */; };
 		AB33FE511FABC91C00E37BF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB33FE4F1FABC91C00E37BF5 /* LaunchScreen.storyboard */; };
 		AB33FE5E1FABCCAD00E37BF5 /* GameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB33FE5D1FABCCAD00E37BF5 /* GameElements.swift */; };
+		AB7893CF1FB299C200790D0A /* kitty.atlas in Resources */ = {isa = PBXBuildFile; fileRef = AB7893CE1FB299C200790D0A /* kitty.atlas */; };
+		AB7893D11FB2A09100790D0A /* FCConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7893D01FB2A09100790D0A /* FCConstants.swift */; };
 		ABF3E11D1FABCE2D0060E336 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABF3E11C1FABCE2D0060E336 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AB183ECF1FABD712003211B9 /* player.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = player.atlas; sourceTree = "<group>"; };
 		AB183ED11FABD72C003211B9 /* CoinSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CoinSound.mp3; sourceTree = "<group>"; };
 		AB33FE3D1FABC91B00E37BF5 /* FluppyCat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FluppyCat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB33FE401FABC91B00E37BF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +33,8 @@
 		AB33FE501FABC91C00E37BF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB33FE521FABC91C00E37BF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB33FE5D1FABCCAD00E37BF5 /* GameElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameElements.swift; sourceTree = "<group>"; };
+		AB7893CE1FB299C200790D0A /* kitty.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = kitty.atlas; sourceTree = "<group>"; };
+		AB7893D01FB2A09100790D0A /* FCConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCConstants.swift; sourceTree = "<group>"; };
 		ABF3E11C1FABCE2D0060E336 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -50,7 +52,7 @@
 		AB183ED31FABDEF6003211B9 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				AB183ECF1FABD712003211B9 /* player.atlas */,
+				AB7893CE1FB299C200790D0A /* kitty.atlas */,
 				AB183ED11FABD72C003211B9 /* CoinSound.mp3 */,
 				ABF3E11C1FABCE2D0060E336 /* Assets.xcassets */,
 			);
@@ -80,6 +82,7 @@
 				AB33FE441FABC91B00E37BF5 /* Actions.sks */,
 				AB33FE421FABC91B00E37BF5 /* GameScene.sks */,
 				AB33FE401FABC91B00E37BF5 /* AppDelegate.swift */,
+				AB7893D01FB2A09100790D0A /* FCConstants.swift */,
 				AB33FE5D1FABCCAD00E37BF5 /* GameElements.swift */,
 				AB33FE461FABC91B00E37BF5 /* GameScene.swift */,
 				AB33FE481FABC91B00E37BF5 /* GameViewController.swift */,
@@ -150,9 +153,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB183ED21FABD72C003211B9 /* CoinSound.mp3 in Resources */,
-				AB183ED01FABD712003211B9 /* player.atlas in Resources */,
 				AB33FE4C1FABC91B00E37BF5 /* Main.storyboard in Resources */,
 				AB33FE431FABC91B00E37BF5 /* GameScene.sks in Resources */,
+				AB7893CF1FB299C200790D0A /* kitty.atlas in Resources */,
 				AB33FE511FABC91C00E37BF5 /* LaunchScreen.storyboard in Resources */,
 				AB33FE451FABC91B00E37BF5 /* Actions.sks in Resources */,
 				ABF3E11D1FABCE2D0060E336 /* Assets.xcassets in Resources */,
@@ -170,6 +173,7 @@
 				AB33FE471FABC91B00E37BF5 /* GameScene.swift in Sources */,
 				AB33FE491FABC91B00E37BF5 /* GameViewController.swift in Sources */,
 				AB33FE411FABC91B00E37BF5 /* AppDelegate.swift in Sources */,
+				AB7893D11FB2A09100790D0A /* FCConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

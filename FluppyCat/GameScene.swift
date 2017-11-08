@@ -26,7 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var moveAndRemove = SKAction()
     
     // Bird is the word
-    let birdAtlas = SKTextureAtlas(named:"player")
+    let birdAtlas = SKTextureAtlas(named:"kitty")
     var birdSprites = Array<SKTexture>()
     var bird = SKSpriteNode()
     var repeatActionBird = SKAction()
@@ -116,10 +116,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     // Pause the game, or resume
                     if (self.isPaused == false) {
                         self.isPaused = true
-                        pauseBtn.texture = SKTexture(imageNamed: "play")
+                        pauseBtn.texture = SKTexture(imageNamed: FCConstants.Images.play)
                     } else {
                         self.isPaused = false
-                        pauseBtn.texture = SKTexture(imageNamed: "pause")
+                        pauseBtn.texture = SKTexture(imageNamed: FCConstants.Images.pause)
                     }
                 }
             }
@@ -174,7 +174,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // This gives the appearance of a seamless moving background
         for i in 0..<2
         {
-            let background = SKSpriteNode(imageNamed: "bg-new")
+            let background = SKSpriteNode(imageNamed: FCConstants.Images.bg)
             background.anchorPoint = CGPoint.init(x: 0, y: 0)
             background.position = CGPoint(x:CGFloat(i) * self.frame.width, y:0)
             background.name = "background"
@@ -183,17 +183,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // Set up the bird sprites for animation
-        birdSprites.append(birdAtlas.textureNamed("bird1"))
-        birdSprites.append(birdAtlas.textureNamed("bird2"))
-        birdSprites.append(birdAtlas.textureNamed("bird3"))
-        birdSprites.append(birdAtlas.textureNamed("bird4"))
+        birdSprites.append(birdAtlas.textureNamed("kitty1"))
+        birdSprites.append(birdAtlas.textureNamed("kitty2"))
+        birdSprites.append(birdAtlas.textureNamed("kitty3"))
+//        birdSprites.append(birdAtlas.textureNamed("kitty4"))
         
         // Initialize the bird, then add it to the GameScene
         self.bird = createBird()
         self.addChild(bird)
         
         // Initialize an SKAction object which takes all the birdSprites and loops them for 0.01 sec each, forever
-        let animateBird = SKAction.animate(with: self.birdSprites, timePerFrame: 0.01)
+        let animateBird = SKAction.animate(with: self.birdSprites, timePerFrame: 0.1)
         self.repeatActionBird = SKAction.repeatForever(animateBird)
         
         // Add other UI sprites to the GameScene
