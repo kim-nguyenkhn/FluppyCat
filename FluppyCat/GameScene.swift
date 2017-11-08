@@ -195,6 +195,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Initialize an SKAction object which takes all the birdSprites and loops them for 0.01 sec each, forever
         let animateBird = SKAction.animate(with: self.birdSprites, timePerFrame: 0.1)
         self.repeatActionBird = SKAction.repeatForever(animateBird)
+        self.bird.run(repeatActionBird)
         
         // Add other UI sprites to the GameScene
         scoreLbl = createScoreLabel()
