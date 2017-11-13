@@ -1,3 +1,3 @@
 # FluppyCat
 
-(gameplay demo pending)
+![FluppyCat demo](demo.gif "FluppyCat demo")
