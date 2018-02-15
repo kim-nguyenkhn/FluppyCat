@@ -1,5 +1,7 @@
 # FluppyCat
 
-Special thanks to Trang Tran for creating all the game's original assets.
+Fluppy Cat is inspired by the infamous Flappy Bird app. 
+
+Special thanks to [Trang Tran](http://trangerthings.com/) for creating all the game's original assets.
 
 ![FluppyCat demo](demo.gif "FluppyCat demo")
