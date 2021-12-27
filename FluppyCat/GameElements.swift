@@ -19,7 +19,7 @@ import SpriteKit
 struct CollisionBitMask {
     static let birdCategory:UInt32 = 0x1 << 0
     static let pillarCategory:UInt32 = 0x1 << 1
-    static let flowerCategory:UInt32 = 0x1 << 2
+    static let coinCategory:UInt32 = 0x1 << 2
     static let groundCategory:UInt32 = 0x1 << 3
 }
 
@@ -30,7 +30,7 @@ extension GameScene {
     //
     // 1 - Creates a sprite node, assigns a texture "bird1", position in center of screen
     // 2 - Make the bird a SKPhysicsBody object, behaving like a ball of radius of half its width
-    // 3 - Category: bird, CollidesWith: pillars & ground, CheckForContactWith: pillars, flowers & ground
+    // 3 - Category: bird, CollidesWith: pillars & ground, CheckForContactWith: pillars, coins & ground
     // 4 - Bird is affected by gravity
     func createBird() -> SKSpriteNode {
         //1
@@ -45,7 +45,7 @@ extension GameScene {
         //3
         bird.physicsBody?.categoryBitMask = CollisionBitMask.birdCategory
         bird.physicsBody?.collisionBitMask = 0
-        bird.physicsBody?.contactTestBitMask = CollisionBitMask.pillarCategory | CollisionBitMask.flowerCategory | CollisionBitMask.groundCategory
+        bird.physicsBody?.contactTestBitMask = CollisionBitMask.pillarCategory | CollisionBitMask.coinCategory | CollisionBitMask.groundCategory
         //4
         bird.physicsBody?.affectedByGravity = false
         bird.physicsBody?.isDynamic = true
@@ -168,7 +168,7 @@ extension GameScene {
         coinNode.physicsBody = SKPhysicsBody(rectangleOf: coinNode.size)
         coinNode.physicsBody?.affectedByGravity = false
         coinNode.physicsBody?.isDynamic = false
-        coinNode.physicsBody?.categoryBitMask = CollisionBitMask.flowerCategory
+        coinNode.physicsBody?.categoryBitMask = CollisionBitMask.coinCategory
         coinNode.physicsBody?.collisionBitMask = 0
         coinNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
         coinNode.color = SKColor.blue

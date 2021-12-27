@@ -244,19 +244,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.bird.removeFromParent()
                 })
             }
-                // If the bird collides with a flower
-            else if (firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.flowerCategory) {
+            // If the bird collides with a coin
+            else if (firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.coinCategory) {
                 
-                // increment the score, remove the flower node
+                // increment the score, remove the coin node
                 run(coinSound)
                 score += 1
                 scoreLbl.text = "\(score)"
                 secondBody.node?.removeFromParent()
             }
-                // If the bird collides with a flower (duplicate code of above)
-            else if (firstBody.categoryBitMask == CollisionBitMask.flowerCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory) {
+            // If the coin collides with the bird (duplicate code of above)
+            else if (firstBody.categoryBitMask == CollisionBitMask.coinCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory) {
                 
-                // increment the score, remove the flower node
+                // increment the score, remove the coin node
                 run(coinSound)
                 score += 1
                 scoreLbl.text = "\(score)"
